@@ -27,7 +27,7 @@ public class OrmMain {
     }
 
     public static void businessLogic(EntityManager entityManager) {
-        final String id = "junseok";
+        final String id = "junseok3";
         final Member member = new Member();
         member.setId(id);
         member.setUserName("준석");
@@ -44,5 +44,8 @@ public class OrmMain {
         System.out.println(members);
 
         entityManager.remove(member);
+
+        entityManager.persist(member);
+        System.out.println(entityManager.find(Member.class, id));
     }
 }
