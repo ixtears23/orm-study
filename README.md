@@ -29,3 +29,6 @@
 - org.h2.Driver
 - jdbc:h2:tcp://localhost/~/test
 - sa 
+
+### wiki
+- [3장 영속성 관리](https://github.com/ixtears23/orm-study/wiki/3%EC%9E%A5-%EC%98%81%EC%86%8D%EC%84%B1-%EA%B4%80%EB%A6%AC)
