@@ -1,4 +1,4 @@
-package junseok.snr.orm.sample.model.entity;
+package junseok.snr.orm.sample.first.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Getter @Setter
-@Entity
+//@Entity
 @Table(name = "ORDER_ITEM")
 public class OrderItem {
 

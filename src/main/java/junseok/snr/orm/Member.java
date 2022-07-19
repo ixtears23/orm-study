@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-@Entity
+//@Entity
 @Table(name = "MEMBER")
 public class Member {
 
