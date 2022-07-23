@@ -8,16 +8,48 @@ import java.util.List;
 
 public class Main {
     private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("snr-orm");
+    private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
     public static void main(String[] args) {
 //        saveTeamWithMember();
 //        queryLogicJoin();
-        findTeamWithMember();
+//        findTeamWithMember();
+        updateRelation();
+        entityManager.close();
         entityManagerFactory.close();
+    }
+
+    private static void updateRelation() {
+        final EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        final Team team2 = new Team("team2", "팀2");
+        entityManager.persist(team2);
+
+        final Member member1 = entityManager.find(Member.class, "member1");
+        member1.setTeam(team2);
+
+        transaction.commit();
+    }
+
+    private static void findTeamWithMember() {
+        final Member member1 = entityManager.find(Member.class, "member1");
+        final Member member2 = entityManager.find(Member.class, "member2");
+        System.out.println("member1.team = " + member1.getTeam());
+        System.out.println("member2.team = " + member2.getTeam());
+    }
+
+    private static void queryLogicJoin() {
+        String jpql = "select m from Member m join m.team t where t.name = :teamName";
+
+        final List<Member> members = entityManager.createQuery(jpql, Member.class)
+                .setParameter("teamName", "팀1")
+                .getResultList();
+
+        members.forEach(member -> System.out.println("[query] member.username=" + member.getUsername()));
     }
 
 
     private static void saveTeamWithMember() {
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
         final EntityTransaction transaction = entityManager.getTransaction();
 
         final Team team1 = new Team("team1", "팀1");
@@ -31,27 +63,6 @@ public class Main {
         entityManager.persist(member2);
         entityManager.persist(team1);
         transaction.commit();
-        entityManager.close();
-    }
-
-    private static void findTeamWithMember() {
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
-        final Member member1 = entityManager.find(Member.class, "member1");
-        final Member member2 = entityManager.find(Member.class, "member2");
-
-        System.out.println("member1.team = " + member1.getTeam());
-        System.out.println("member2.team = " + member2.getTeam());
-    }
-
-    private static void queryLogicJoin() {
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
-        String jpql = "select m from Member m join m.team t where t.name = :teamName";
-
-        final List<Member> members = entityManager.createQuery(jpql, Member.class)
-                .setParameter("teamName", "팀1")
-                .getResultList();
-
-        members.forEach(member -> System.out.println("[query] member.username=" + member.getUsername()));
     }
 
 }
