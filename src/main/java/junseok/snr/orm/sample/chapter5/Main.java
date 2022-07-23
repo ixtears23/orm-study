@@ -9,13 +9,25 @@ import java.util.List;
 public class Main {
     private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("snr-orm");
     private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
+
     public static void main(String[] args) {
 //        saveTeamWithMember();
 //        queryLogicJoin();
 //        findTeamWithMember();
-        updateRelation();
+//        updateRelation();
+        deleteRelation();
         entityManager.close();
         entityManagerFactory.close();
+    }
+
+    private static void deleteRelation() {
+        final EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        final Member member1 = entityManager.find(Member.class, "member1");
+        member1.setTeam(null);
+
+        transaction.commit();
     }
 
     private static void updateRelation() {
