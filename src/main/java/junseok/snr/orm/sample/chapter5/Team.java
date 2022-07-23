@@ -1,12 +1,14 @@
 package junseok.snr.orm.sample.chapter5;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@NoArgsConstructor
 @Getter @Setter
 @Entity
 public class Team {
