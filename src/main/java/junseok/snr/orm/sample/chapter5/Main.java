@@ -16,9 +16,22 @@ public class Main {
 //        findTeamWithMember();
 //        updateRelation();
 //        deleteRelation();
-        biDirection();
+//        biDirection();
+        saveToWayAssociation();
         entityManager.close();
         entityManagerFactory.close();
+    }
+
+    private static void saveToWayAssociation() {
+        final EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+
+        final Team team3 = new Team("team3", "팀3");
+        final Member member3 = entityManager.find(Member.class, "member3");
+        member3.setTeam(team3);
+        team3.getMembers().add(member3);
+
+        transaction.commit();
     }
 
     private static void biDirection() {
