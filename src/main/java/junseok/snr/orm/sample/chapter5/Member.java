@@ -19,6 +19,11 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    public void setTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
+
     public Member(String id, String username) {
         this.id = id;
         this.username = username;
