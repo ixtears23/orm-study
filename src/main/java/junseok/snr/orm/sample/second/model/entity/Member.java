@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @Setter
 @ToString
 @NoArgsConstructor
-@Entity
+//@Entity
 public class Member {
 
     @Id

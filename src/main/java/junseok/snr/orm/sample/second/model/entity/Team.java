@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @ToString
 @Getter @Setter
 @NoArgsConstructor
-@Entity
+//@Entity
 public class Team {
 
     @Id
