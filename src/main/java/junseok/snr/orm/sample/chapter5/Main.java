@@ -15,9 +15,16 @@ public class Main {
 //        queryLogicJoin();
 //        findTeamWithMember();
 //        updateRelation();
-        deleteRelation();
+//        deleteRelation();
+        biDirection();
         entityManager.close();
         entityManagerFactory.close();
+    }
+
+    private static void biDirection() {
+        final Team team1 = entityManager.find(Team.class, "team1");
+        List<Member> members = team1.getMembers();
+        members.forEach(System.out::println);
     }
 
     private static void deleteRelation() {

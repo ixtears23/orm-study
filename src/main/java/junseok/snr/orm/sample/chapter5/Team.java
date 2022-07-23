@@ -8,6 +8,8 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @ToString
 @NoArgsConstructor
@@ -18,6 +20,8 @@ public class Team {
     @Column(name = "TEAM_ID")
     private String id;
     private String name;
+    @OneToMany(mappedBy = "team")
+    private List<Member> members;
 
     public Team(String id, String name) {
         this.id = id;
