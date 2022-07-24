@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter @Setter
-@Entity
+//@Entity
 public class Member {
     @Id
     @Column(name = "MEMBER_ID")

@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @Getter @Setter
-@Entity
+//@Entity
 public class Team {
     @Id
     @Column(name = "TEAM_ID")
