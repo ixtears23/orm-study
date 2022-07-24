@@ -12,6 +12,7 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private long id;
+    private String username;
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
