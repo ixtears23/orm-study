@@ -18,5 +18,9 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
+
+        if (!team.getMembers().contains(this)) {
+            team.getMembers().add(this);
+        }
     }
 }
