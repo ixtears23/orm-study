@@ -13,15 +13,13 @@ public class Team {
 
     @Id @GeneratedValue
     @Column(name = "TEAM_ID")
-    private Long id;
+    private String id;
     private String name;
     @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>();
 
     public void addMember(Member member) {
         this.members.add(member);
-        if (member.getTeam() != this) {
-            member.setTeam(this);
-        }
+        member.setTeam(this);
     }
 }

@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Member {
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
-    private long id;
+    private String id;
     private String username;
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
@@ -19,9 +19,6 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
-
-        if (!team.getMembers().contains(this)) {
-            team.getMembers().add(this);
-        }
+        team.getMembers().add(this);
     }
 }
